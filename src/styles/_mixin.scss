@@ -1,0 +1,56 @@
+@mixin headline-front {
+  font-size: clamp(40px, 13vw, 48px);
+  background: $GradationColor;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  @media (min-width: 960px) {
+    font-size: 64px;
+  }
+}
+
+@mixin headline-back {
+  position: absolute;
+  z-index: -1;
+  left: 16px;
+  bottom: 0;
+  font-size: 120px;
+  color: transparent;
+  text-stroke: 1px #4f4f4f;
+  -webkit-text-stroke: 1px #4f4f4f;
+  white-space: nowrap;
+}
+
+@mixin content-visibility($height) {
+  content-visibility: auto;
+  contain-intrinsic-size: $height;
+}
+
+@mixin buruburu-text($name, $color) {
+  animation: #{$name} 1s linear infinite alternate both;
+
+  @keyframes #{$name} {
+    @for $i from 0 through 10 {
+      #{$i * 10%} {
+        text-shadow: #{floor(random() * 17) -
+          8px}
+          #{floor(random() * 3) -
+          1px}
+          #{floor(random() * 2px)}
+          $color;
+      }
+    }
+  }
+}
+
+@mixin responsive($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // マップ型で定義されていない値が呼び出された時はエラーを返す
+  @else {
+    @error "指定されたブレークポイントは定義されていません。" + "指定できるブレークポイントは次のとおりです。 -> #{map-keys($breakpoints)}";
+  }
+}
