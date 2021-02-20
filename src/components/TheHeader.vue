@@ -3,8 +3,25 @@
     <div class="header__inner">
       <a class="header__link" href="/">
         <img class="header__logo" src="@/assets/logo.svg" alt="Yuki Kanayama's LOGO">
+        <div class="header__logo-text">
+          Yuki Kanayama's Portfolio
+        </div>
       </a>
-      <button class="header__mobile-menu" @touchstart="openMenu">
+      <nav class="header__nav">
+        <ul class="header__nav--list">
+          <li class="header__nav--item">
+            <a @click="scrollToAnchorPoint('products')" class="header__nav--link">
+              My Products
+            </a>
+          </li>
+          <li class="header__nav--item">
+            <a href="#profile" class="header__nav--link">
+              My Profile
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="header__mobile-menu" @click="openMenu">
         <span></span>
         <span></span>
         <span></span>
@@ -49,6 +66,10 @@ export default {
         }, 250);
         main.classList.toggle('menu-open');
       }
+    },
+    scrollToAnchorPoint(refName) {
+      const el = this.$refs[refName]
+      el.scrollIntoView({ behavior: 'smooth'})
     }
   }
 }
@@ -69,6 +90,30 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    &__link {
+      display: flex;
+      align-items: center;
+    }
+    &__logo-text {
+      display: none;
+      margin-left: 1rem;
+      font-size: clamp(32px, 3vw, 40px);
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+      }
+    &__nav {
+      display: none; 
+      &--list {
+        display: flex;
+      }
+      &--item {
+        font-size: clamp(16px, 1.5vw, 24px);
+        font-family: 'Roboto', sans-serif;
+        &:first-child {
+          margin-right: 2rem;
+        }
+      }
     }
     &__mobile-menu {
       background-color: unset;
@@ -148,6 +193,22 @@ export default {
   .header {
     @include responsive(lg) {
       height: 120px;
+      &__inner {
+        padding: 0 2.5rem;
+      }
+      &__logo {
+        width: 80px;
+        height: 80px;
+      }
+      &__logo-text {
+        display: block;
+      }
+      &__nav {
+        display: block;
+      }
+      &__mobile-menu {
+        display: none;
+      }
     }
   }
 </style>

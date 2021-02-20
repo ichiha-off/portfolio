@@ -1,12 +1,14 @@
 <template>
-  <section class="products" id="products">
+  <section class="products" ref="products">
     <h1 class="products__headline">
       <span class="products__headline--front">My Products</span>
       <span class="products__headline--back">My Products</span>
     </h1>
     <div class="products__list">
       <div class="products__item">
-        <img src="@/assets/product-item1.png" alt="Daddy's breakというアプリのイメージ画像です。" class="products__img">
+        <router-link to="/product" class="products__link">
+          <img src="@/assets/product-item1.png" alt="Daddy's breakというアプリのイメージ画像です。" class="products__img">
+        </router-link>
         <div class="products__title">
           Daddy’s break
         </div>
@@ -21,7 +23,9 @@
       </div>
       
       <div class="products__item">
-        <img src="@/assets/product-item2.png" alt="私が作ったより詳しい自己紹介があるサイトのイメージ画像です。" class="products__img">
+        <a href="#/product" class="products__link">
+          <img src="@/assets/product-item2.png" alt="私が作ったより詳しい自己紹介があるサイトのイメージ画像です。" class="products__img">
+        </a>
         <div class="products__title">
           YK Portfolio
         </div>
@@ -38,7 +42,9 @@
       </div>
       
       <div class="products__item">
-        <img src="@/assets/product-item3.png" alt="架空の幼稚園のサイトのイメージ画像です。" class="products__img">
+        <a href="/product3" class="products__link">
+          <img src="@/assets/product-item3.png" alt="架空の幼稚園のサイトのイメージ画像です。" class="products__img">
+        </a>
         <div class="products__title">
           わかやま幼稚園（架空）
         </div>
@@ -87,8 +93,12 @@ export default {
         margin-bottom: 0;
       }
     }
+    &__link {
+      display: block;
+    }
     &__img {
       width: 100%;
+      display: block;
     }
     &__title {
       margin-top: 1rem;
