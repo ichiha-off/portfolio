@@ -2,7 +2,7 @@
   <TheLoading/>
   <TheHeader/>
   <main class="main">
-    <div v-bind:class="this.class">
+    <div id="router-view" v-bind:class="this.class">
       <router-view/>
     </div>
   </main>
@@ -29,11 +29,11 @@ export default {
   data() {
     return {
       changePage: true,
-      class: ''
+      class: '_opne'
     }
   },
   watch: {
-    'changePage': function () { 
+    'changePage': function () {
       this.changePage ? this.changeStart() : this.changeEnd();
     }
   },
@@ -52,14 +52,13 @@ export default {
           texts.forEach(function(text) {
             text.classList.add('slide-text');
           });
-        }, 3000);
+        }, 1000);
       })
     },
 
     changeStart() {
       this.class = '_open';
     },
-
     changeEnd() {
       this.class = '_close';
     }
@@ -71,19 +70,15 @@ export default {
       setTimeout(() => {
         next();
       }, 400);
-    })
+    });
     this.$router.afterEach(() => {
       this.changePage = true;
-    })
-  }
+    });
+  },
 }
 </script>
 
 <style lang="scss">
-
-html {
-  scroll-behavior: smooth;
-}
 
 body {
   background-color: $BackColorB;
@@ -135,6 +130,12 @@ button {
   100% {
     opacity: 0;
     transform: translateX(-300px);
+  }
+}
+
+@include responsive(lg) {
+  .main {
+    padding-top: 120px;
   }
 }
 

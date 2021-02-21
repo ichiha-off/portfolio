@@ -49,7 +49,7 @@ export default {
   .profile {
     padding: 240px 1.5rem 0;
     overflow: hidden;
-    @include content-visibility(1000px);
+    // @include content-visibility(1000px);
     &__headline {
       position: relative;
       font-family: 'Oswald', sans-serif;
@@ -85,6 +85,13 @@ export default {
         margin-top: 1rem;
         font-family: 'Roboto', sans-serif;
       }
+    }
+  }
+
+  // レスポンシブ
+  .profile {
+    @include responsive(md) {
+      padding: 240px 80px 0;
     }
   }
 </style>

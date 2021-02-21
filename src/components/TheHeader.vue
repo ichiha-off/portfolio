@@ -10,7 +10,7 @@
       <nav class="header__nav">
         <ul class="header__nav--list">
           <li class="header__nav--item">
-            <a @click="scrollToAnchorPoint('products')" class="header__nav--link">
+            <a href="#products" class="header__nav--link">
               My Products
             </a>
           </li>
@@ -67,9 +67,10 @@ export default {
         main.classList.toggle('menu-open');
       }
     },
-    scrollToAnchorPoint(refName) {
-      const el = this.$refs[refName]
-      el.scrollIntoView({ behavior: 'smooth'})
+    removeClass() {
+      const view = document.getElementById('router-view');
+      view.classList.add('hoge')
+      console.log(view)
     }
   }
 }
@@ -98,7 +99,7 @@ export default {
     &__logo-text {
       display: none;
       margin-left: 1rem;
-      font-size: clamp(32px, 3vw, 40px);
+      font-size: clamp(24px, 2vw, 32px);
       font-weight: bold;
       font-family: 'Roboto', sans-serif;
       }
@@ -150,46 +151,47 @@ export default {
     }
   }
 
-    .mobile-menu {
-    &__area {
-      position: absolute;
-      top: 79px;
-      left: 0;
-      background-color: $BackColorB;
-      height: 0;
-      width: 100vw;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.4s ease-out,
-                  height 0.4s ease-out,
-                  visibility 0.4s ease-out;
-      &.menu-open {
-        visibility: visible;
-        height: 48px;
-        opacity: 1;
-      }
-    }
-    &__nav {
-      height: 100%;
-      padding: 0 1.5rem;
-    }
-    &__list {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    &__item {
-      font-size: clamp(12px, 3vw, 16px);
-      font-family: 'Roboto', sans-serif;
-      font-weight: bold;
-      letter-spacing: 0.08em;
-      &:first-child {
-        margin-right: 1rem;
-      }
+  .mobile-menu {
+  &__area {
+    position: absolute;
+    top: 79px;
+    left: 0;
+    background-color: $BackColorB;
+    height: 0;
+    width: 100vw;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease-out,
+                height 0.4s ease-out,
+                visibility 0.4s ease-out;
+    &.menu-open {
+      visibility: visible;
+      height: 48px;
+      opacity: 1;
     }
   }
+  &__nav {
+    height: 100%;
+    padding: 0 1.5rem;
+  }
+  &__list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  &__item {
+    font-size: clamp(12px, 3vw, 16px);
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
+}
 
+// レスポンシブ
   .header {
     @include responsive(lg) {
       height: 120px;

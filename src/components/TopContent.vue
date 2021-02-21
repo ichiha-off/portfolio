@@ -20,19 +20,21 @@
 
 <script>
 export default {
-  name: 'TopContent'
+  name: 'TopContent',
 }
 </script>
 
 <style lang="scss" scoped>
   .slide-text {
     animation: slide-text 0.6s ease-in-out;
-    animation-fill-mode: both;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+    opacity: 0;
     &:nth-child(2) {
-      animation-delay: 0.3s;
+      animation-delay: 2.3s;
     }
     &:nth-child(3) {
-      animation-delay: 0.6s;
+      animation-delay: 2.6s;
     }
   }
 
@@ -58,7 +60,6 @@ export default {
         background: $GradationColor;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        opacity: 0;
       } 
     }
     &__scroll {
@@ -87,60 +88,6 @@ export default {
         -webkit-animation: scroll-bar 2.4s ease-in-out infinite;
         animation: scroll-bar 2.4s ease-in-out infinite;
         background-color: #fff;
-      }
-    }
-  }
-
-  .top {
-    @include responsive(md) {
-      &__catch-copy {
-        left: clamp(40px, 5vw ,110px);
-        &--gradient {
-          font-size: clamp(80px, 20vw, 128px);
-        } 
-      }
-      &__scroll {
-        font-size: clamp(16px, 2vw, 24px);
-        right: 40px;
-        bottom: -10px;
-        &--bar {
-          width: 120px;
-        }
-        &--inner-bar {
-          position: absolute;
-          top: 0;
-          right: -240px;
-          width: 240px;
-          height: 1px;
-          -webkit-animation: scroll-bar 2.4s ease-in-out infinite;
-          animation: scroll-bar 2.4s ease-in-out infinite;
-          background-color: #fff;
-        }
-      }
-    }
-    @include responsive(lg) {
-      height: max(calc(100vh - 120px), calc(812px - 120px));
-      &__catch-copy {
-        bottom: 120px;
-      }
-      &__image {
-        width: min(60%, 1080px);
-        position: absolute;
-        right: clamp(40px, 5vw ,110px);
-        bottom: 120px;
-      }
-    }
-    @include responsive(xl) {
-      height: max(calc(100vh - 120px), calc(812px - 120px));
-      &__catch-copy {
-        bottom: 80px;
-        &--gradient {
-          font-size: clamp(160px, 12vw, 240px);
-        }
-      }
-      &__image {
-        width: clamp(60%, 60vw, 1080px);
-        bottom: 80px;
       }
     }
   }
@@ -177,6 +124,64 @@ export default {
     100% {
       transform: translateX(0);
       opacity: 1;
+    }
+  }
+
+  // レスポンシブ
+  .top {
+    @include responsive(md) {
+      &__catch-copy {
+        left: clamp(40px, 5vw ,110px);
+        &--gradient {
+          font-size: clamp(80px, 20vw, 128px);
+        } 
+      }
+      &__scroll {
+        font-size: clamp(16px, 2vw, 24px);
+        right: 40px;
+        bottom: -10px;
+        &--bar {
+          width: 120px;
+        }
+        &--inner-bar {
+          position: absolute;
+          top: 0;
+          right: -240px;
+          width: 240px;
+          height: 1px;
+          -webkit-animation: scroll-bar 2.4s ease-in-out infinite;
+          animation: scroll-bar 2.4s ease-in-out infinite;
+          background-color: #fff;
+        }
+      }
+    }
+    @include responsive(lg) {
+      height: max(calc(100vh - 120px), calc(812px - 120px));
+      &__catch-copy {
+        bottom: 120px;
+        &--gradient {
+          font-size: clamp(120px, 20vh, 200px);
+        }
+      }
+      &__image {
+        width: clamp(640px, 80vh, 80%);
+        position: absolute;
+        right: 40px;
+      }
+    }
+    @include responsive(xl) {
+      height: calc(100vh - 120px);
+      &__catch-copy {
+        bottom: 10%;
+        &--gradient {
+          font-size: clamp(120px, 12vw, 240px);
+        }
+      }
+      &__image {
+        right: clamp(40px, 5vw, 110px);
+        width: clamp(640px, 50vw, 1080px);
+        top: 10%;
+      }
     }
   }
 </style>

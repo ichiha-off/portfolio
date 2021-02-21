@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import TopView from '@/views/TopView.vue'
 
 const routes = [
@@ -8,15 +8,14 @@ const routes = [
     component: TopView,
   },
   {
-    path: '/product',
+    path: '/product/:id',
     name: 'ProductItem',
     component: () => import(/* webpackChunkName: "ProductItem" */ '@/views/ProductItem.vue')
   }
 ]
 
 const router = createRouter({
-  mode: 'history',
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 

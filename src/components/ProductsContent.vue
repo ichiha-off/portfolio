@@ -1,13 +1,16 @@
 <template>
-  <section class="products" ref="products">
+  <section class="products" id="products">
     <h1 class="products__headline">
       <span class="products__headline--front">My Products</span>
       <span class="products__headline--back">My Products</span>
     </h1>
     <div class="products__list">
       <div class="products__item">
-        <router-link to="/product" class="products__link">
-          <img src="@/assets/product-item1.png" alt="Daddy's breakというアプリのイメージ画像です。" class="products__img">
+        <router-link to="/product/1" class="products__link">
+          <picture>
+            <source media="(min-width: 768px)" srcset="@/assets/product-item1-2x.png">
+            <img src="@/assets/product-item1.png" alt="Daddy's breakというアプリのイメージ画像です。" class="products__img">
+          </picture>
         </router-link>
         <div class="products__title">
           Daddy’s break
@@ -23,9 +26,12 @@
       </div>
       
       <div class="products__item">
-        <a href="#/product" class="products__link">
-          <img src="@/assets/product-item2.png" alt="私が作ったより詳しい自己紹介があるサイトのイメージ画像です。" class="products__img">
-        </a>
+        <router-link to="/product/2" class="products__link">
+          <picture>
+            <source media="(min-width: 768px)" srcset="@/assets/product-item2-2x.png">
+            <img src="@/assets/product-item2.png" alt="私が作ったより詳しい自己紹介があるサイトのイメージ画像です。" class="products__img">
+          </picture>
+        </router-link>
         <div class="products__title">
           YK Portfolio
         </div>
@@ -42,9 +48,12 @@
       </div>
       
       <div class="products__item">
-        <a href="/product3" class="products__link">
+        <router-link to="/product/3" class="products__link">
+        <picture>
+          <source media="(min-width: 768px)" srcset="@/assets/product-item3-2x.png">
           <img src="@/assets/product-item3.png" alt="架空の幼稚園のサイトのイメージ画像です。" class="products__img">
-        </a>
+        </picture>
+        </router-link>
         <div class="products__title">
           わかやま幼稚園（架空）
         </div>
@@ -71,7 +80,7 @@ export default {
 <style lang="scss" scoped>
   .products {
     padding: 240px 1.5rem 0;
-    @include content-visibility(1000px);
+    // @include content-visibility(1200px);
     overflow: hidden;
     &__headline {
       position: relative;
@@ -97,7 +106,7 @@ export default {
       display: block;
     }
     &__img {
-      width: 100%;
+      width: min(100%, 327px);
       display: block;
     }
     &__title {
@@ -113,6 +122,41 @@ export default {
         font-family: 'Roboto', sans-serif;
         margin-top: 0.75rem;
         letter-spacing: 0.08em;
+      }
+    }
+  }
+
+  .products {
+    @include responsive(md) {
+      padding: 240px 80px 0;
+      &__item {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      &__img {
+        width: 100%;
+        margin: 0 auto;
+      }
+      &__title {
+        margin-top: 2rem;
+      }
+      &__comment {
+        margin-top: 2rem;
+      }
+    }
+    @include responsive(xl) {
+      max-width: 1200px;
+      margin: 0 auto;
+      &__list {
+        display: flex;
+      }
+      &__item {
+        margin-right: clamp(16px, 5vw, 110px);
+        margin-bottom: 0;
+        &:last-child {
+          margin-right: 0px;
+        }
       }
     }
   }
