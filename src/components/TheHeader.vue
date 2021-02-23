@@ -10,12 +10,12 @@
       <nav class="header__nav">
         <ul class="header__nav--list">
           <li class="header__nav--item">
-            <a href="#products" class="header__nav--link">
+            <a href="/#products" class="header__nav--link">
               My Products
             </a>
           </li>
           <li class="header__nav--item">
-            <a href="#profile" class="header__nav--link">
+            <a href="/#profile" class="header__nav--link">
               My Profile
             </a>
           </li>
@@ -30,12 +30,12 @@
         <nav class="mobile-menu__nav">
           <ul class="mobile-menu__list">
             <li class="mobile-menu__item">
-              <a href="#products" class="mobile-menu__link">
+              <a href="#products" class="mobile-menu__link" @click="openMenu">
                 My Products
               </a>
             </li>
             <li class="mobile-menu__item">
-              <a href="#profile" class="mobile-menu__link">
+              <a href="#profile" class="mobile-menu__link" @click="openMenu">
                 My Profile
               </a>
             </li>
@@ -67,12 +67,7 @@ export default {
         main.classList.toggle('menu-open');
       }
     },
-    removeClass() {
-      const view = document.getElementById('router-view');
-      view.classList.add('hoge')
-      console.log(view)
-    }
-  }
+  },
 }
 </script>
 
@@ -109,7 +104,6 @@ export default {
         display: flex;
       }
       &--item {
-        font-size: clamp(16px, 1.5vw, 24px);
         font-family: 'Roboto', sans-serif;
         &:first-child {
           margin-right: 2rem;
@@ -119,6 +113,7 @@ export default {
     &__mobile-menu {
       background-color: unset;
       cursor: pointer;
+      transition: opacity 0.3s, visibility 0.3s;
       > span {
         background-color: #fff;
         display: block;

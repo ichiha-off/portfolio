@@ -79,7 +79,7 @@ export default {
 
 <style lang="scss" scoped>
   .products {
-    padding: 240px 1.5rem 0;
+    padding: 10rem 1.5rem 0;
     // @include content-visibility(1200px);
     overflow: hidden;
     &__headline {
@@ -104,6 +104,41 @@ export default {
     }
     &__link {
       display: block;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s;
+      &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #fff;
+        transform: translateY(-101%);
+        transition: all 0.4s;
+        opacity: 0.8;
+      }
+      &::after {
+        content: 'More View';
+        opacity: 0;
+        font-family: 'Roboto', sans-serif;
+        color: $BackColorB;
+        display: block;
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+        transition: all 0.5s;
+      }
+      &:hover {
+        &::before {
+          transform: translateY(0);
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
     }
     &__img {
       width: min(100%, 327px);
@@ -126,9 +161,10 @@ export default {
     }
   }
 
+// レスポンシブ
   .products {
     @include responsive(md) {
-      padding: 240px 80px 0;
+      padding: 10rem 5rem 0;
       &__item {
         width: 80%;
         margin-left: auto;

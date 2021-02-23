@@ -40,7 +40,7 @@ export default {
 
   .top {
     position: relative;
-    height: max(calc(100vh - 80px), calc(812px - 80px));
+    height: max(calc(812px - 80px), calc(100vh - 80px));
     &__image {
       width: 100%;
       animation: fuwafuwa 3s ease-in-out infinite;
@@ -137,7 +137,6 @@ export default {
         } 
       }
       &__scroll {
-        font-size: clamp(16px, 2vw, 24px);
         right: 40px;
         bottom: -10px;
         &--bar {
@@ -174,7 +173,7 @@ export default {
       &__catch-copy {
         bottom: 10%;
         &--gradient {
-          font-size: clamp(120px, 12vw, 240px);
+          font-size: clamp(120px, 12vw, 232px);
         }
       }
       &__image {

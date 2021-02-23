@@ -59,7 +59,7 @@ export default {
       const items = document.querySelectorAll('.products__item');
       for(let item of items) {
         const tl = gsap.timeline({
-          defaults: { ease: "power2.out", duration: 0.4 },
+          defaults: { ease: "power2.out", duration: 0.3 },
           scrollTrigger: {
             trigger: item,
             start: "top 60%", // ウィンドウのどの位置を発火の基準点にするか
@@ -69,7 +69,7 @@ export default {
         });
 
         tl.fromTo(item.childNodes[0], {
-          x: 500,
+          x: 200,
           autoAlpha: 0,
         }, {
           x: 0,
@@ -97,60 +97,28 @@ export default {
         );
       }
     },
-    scrollProfileContent() {
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out", duration: 0.4 },
-        scrollTrigger: {
-          trigger: '.profile__name',
-          start: "top 50%", // ウィンドウのどの位置を発火の基準点にするか
-          end: "bottom 25%", // ウィンドウのどの位置をイベントの終了点にするか
-          toggleActions: "play none none none", // スクロールイベントで発火するアニメーションの種類
-        }
-      })
-      
-      tl.fromTo('.profile__name',{
-        transformOrigin: 'top',
-        scaleY: 0,
-        autoAlpha: 0
-      },{
-        scaleY: 1,
-        autoAlpha: 1,
-      })
-      .fromTo('.profile__sns-icon-img', {
-        transformOrigin: 'left',
-        scaleX: 0,
-        autoAlpha: 0
-      }, {
-        scaleX: 1,
-        autoAlpha: 1,
-        stagger: {
-          from: 'start',
-          amount: 0.4
-        }
-      }, '+=0.2')
-      .fromTo('.profile__text',{
-        transformOrigin: 'top',
-        scaleY: 0,
-        autoAlpha: 0
-      },{
-        scaleY: 1,
-        autoAlpha: 1,
-      },'+=0.2')
-      .fromTo('.profile__text--en',{
-        transformOrigin: 'top',
-        scaleY: 0,
-        autoAlpha: 0
-      },{
-        scaleY: 1,
-        autoAlpha: 1,
-      },'+=0.1')
-    },
+    headerVisible() {
+      const menu = document.querySelector('.header__mobile-menu');
+      const nav = document.querySelector('.header__nav');
+      menu.setAttribute(
+        "style", "opacity: 1; visibility: visible;"
+      );
+      nav.setAttribute(
+        "style", "opacity: 1; visibility: visible;"
+      );
+    }
   },
   mounted() {
-    this.scrollProductsHeadline();
-    this.scrollProfileHeadline();
-    this.scrollProductsItem();
-    this.scrollProfileContent();
+    this.$nextTick(function() {
+      this.scrollProductsHeadline();
+      this.scrollProfileHeadline();
+      this.scrollProductsItem();
+    })
+    this.headerVisible();
   },
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

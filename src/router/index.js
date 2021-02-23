@@ -10,13 +10,25 @@ const routes = [
   {
     path: '/product/:id',
     name: 'ProductItem',
-    component: () => import(/* webpackChunkName: "ProductItem" */ '@/views/ProductItem.vue')
-  }
+    component: () => import('@/views/ProductItem.vue')
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  // scrollBehavior (to, from, savedPosition) {
+  //   if (savedPosition) {
+  //     return new Promise((resolve) => {
+  //       setTimeout(() => {
+  //         resolve(savedPosition)
+  //       })
+  //     })
+  //   } else {
+  //     return { x: 0, y: 0 }
+  //   }
+  // }
 })
+
 
 export default router

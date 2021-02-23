@@ -72,13 +72,19 @@ export default {
       }, 400);
     });
     this.$router.afterEach(() => {
-      this.changePage = true;
+      setTimeout(() => {
+        this.changePage = true;
+      }, 400);
     });
   },
 }
 </script>
 
 <style lang="scss">
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: $BackColorB;
@@ -116,7 +122,7 @@ button {
 @keyframes page-change-start {
   0% {
     opacity: 0;
-    transform: translateX(300px);
+    transform: translateY(-100px);
   }
   100% {
     opacity: 1;
@@ -129,7 +135,7 @@ button {
   }
   100% {
     opacity: 0;
-    transform: translateX(-300px);
+    transform: translateY(100px);
   }
 }
 
