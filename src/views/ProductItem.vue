@@ -136,9 +136,11 @@ export default {
   margin: 0 auto;
   &__img {
     width: min(100%, 1080px);
+    height: 100%;
     &--bottom {
       margin-top: 1rem;
       width: min(100%, 1080px);
+      height: 100%;
     }
   }
   &__text {

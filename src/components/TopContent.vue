@@ -71,9 +71,9 @@ export default {
       transform-origin: center right;
       position: absolute;
       right: 24px;
-      bottom: 0;
+      bottom: 10%;
       &--bar {
-        width: 64px;
+        width: 120px;
         height: 1px;
         display: block;
         position: relative;
@@ -82,10 +82,9 @@ export default {
       &--inner-bar {
         position: absolute;
         top: 0;
-        right: -120px;
-        width: 120px;
+        right: -160px;
+        width: 160px;
         height: 1px;
-        -webkit-animation: scroll-bar 2.4s ease-in-out infinite;
         animation: scroll-bar 2.4s ease-in-out infinite;
         background-color: #fff;
       }
@@ -104,7 +103,7 @@ export default {
 
   @keyframes scroll-bar {
     0% {
-      transform: translate3d(-480px,0,0);
+      transform: translate3d(-320px,0,0);
     }
 
     100% {
@@ -143,14 +142,18 @@ export default {
           width: 120px;
         }
         &--inner-bar {
-          position: absolute;
-          top: 0;
           right: -240px;
           width: 240px;
-          height: 1px;
-          -webkit-animation: scroll-bar 2.4s ease-in-out infinite;
           animation: scroll-bar 2.4s ease-in-out infinite;
-          background-color: #fff;
+        }
+      }
+      @keyframes scroll-bar {
+        0% {
+          transform: translate3d(-480px,0,0);
+        }
+
+        100% {
+          transform: translateZ(0);
         }
       }
     }
