@@ -95,9 +95,14 @@ export default {
     }
     &__list {
       margin-top: 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     &__item {
+      margin-right: clamp(16px, 5vw, 110px);
       margin-bottom: 7.5rem;
+      flex: 0 1 327px;
       &:last-child {
         margin-bottom: 0;
       }
@@ -165,11 +170,6 @@ export default {
   .products {
     @include responsive(md) {
       padding: 10rem 5rem 0;
-      &__item {
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-      }
       &__img {
         width: 100%;
         margin: 0 auto;
@@ -184,12 +184,8 @@ export default {
     @include responsive(xl) {
       max-width: 1200px;
       margin: 0 auto;
-      &__list {
-        display: flex;
-      }
       &__item {
         margin-right: clamp(16px, 5vw, 110px);
-        margin-bottom: 0;
         &:last-child {
           margin-right: 0px;
         }

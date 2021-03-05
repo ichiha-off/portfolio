@@ -176,7 +176,7 @@ export default {
       &__catch-copy {
         bottom: 10%;
         &--gradient {
-          font-size: clamp(120px, 12vw, 232px);
+          font-size: clamp(120px, 12vw, 216px);
         }
       }
       &__image {
