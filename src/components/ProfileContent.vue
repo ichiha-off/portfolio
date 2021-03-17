@@ -87,6 +87,10 @@ export default {
         margin-right: 0px;
       }
     }
+    &__sns-icon-img {
+      width: auto;
+      height: auto;
+    }
     &__text {
       line-height: 1.6;
       &--en {

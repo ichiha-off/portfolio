@@ -21,7 +21,7 @@
           </li>
         </ul>
       </nav>
-      <button class="header__mobile-menu" @click="openMenu">
+      <button class="header__mobile-menu" @click="openMenu" aria-label="メニューの開閉ボタン">
         <span></span>
         <span></span>
         <span></span>
@@ -90,6 +90,10 @@ export default {
     &__link {
       display: flex;
       align-items: center;
+    }
+    &__logo-logo {
+      height: auto;
+      width: auto;
     }
     &__logo-text {
       display: none;

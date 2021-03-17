@@ -317,6 +317,7 @@ export default {
     }
     &__logo {
       width: clamp(240px, 50vw, 320px);
+      height: auto;
     }
     &__logo-img {
       width: 100%;

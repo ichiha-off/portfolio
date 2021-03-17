@@ -147,6 +147,7 @@ export default {
     }
     &__img {
       width: min(100%, 327px);
+      height: auto;
       display: block;
     }
     &__title {

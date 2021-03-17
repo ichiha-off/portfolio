@@ -43,6 +43,7 @@ export default {
     height: max(calc(812px - 80px), calc(100vh - 80px));
     &__image {
       width: 100%;
+      height: auto;
       animation: fuwafuwa 3s ease-in-out infinite;
     }
     &__catch-copy {
