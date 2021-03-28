@@ -1,28 +1,26 @@
 @mixin headline-front {
-  font-size: clamp(40px, 13vw, 48px);
+  @include responsiveSize("font-size", 320px, 1920px, 40px, 80px);
   background: $GradationColor;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  @media (min-width: 960px) {
-    font-size: 64px;
-  }
 }
 
 @mixin headline-back {
+  @include responsiveSize("font-size", 1280px, 1920px, 120px, 240px);
   position: absolute;
   z-index: -1;
-  left: 16px;
+  left: 40px;
   bottom: 0;
-  font-size: 120px;
   color: transparent;
   text-stroke: 1px #4f4f4f;
   -webkit-text-stroke: 1px #4f4f4f;
   white-space: nowrap;
-}
-
-@mixin content-visibility($height) {
-  content-visibility: auto;
-  contain-intrinsic-size: $height;
+  @include responsive(md) {
+    top: -0.1em;
+    right: 100px;
+    left: inherit;
+    bottom: 0;
+  }
 }
 
 @mixin buruburu-text($name, $color) {
@@ -48,9 +46,22 @@
       @content;
     }
   }
-
   // マップ型で定義されていない値が呼び出された時はエラーを返す
   @else {
     @error "指定されたブレークポイントは定義されていません。" + "指定できるブレークポイントは次のとおりです。 -> #{map-keys($breakpoints)}";
   }
+}
+
+// 幅に応じて伸び縮みする値
+// $property 値を指定するプロパティ
+// $bpLower ブレークポイント（小）
+// $bpUpper ブレークポイント（大）
+// $spMin 値の下限
+// $spMax 値の上限
+// $a 小数点第2位で四捨五入
+@mixin responsiveSize($property, $bpLower, $bpUpper, $spMin, $spMax) {
+  $a: (round((100 * ($spMax - $spMin) / ($bpUpper - $bpLower)) * 100)) / 100;
+  $b: round($spMin - ($bpLower / 100) * $a);
+  #{$property}: $spMin; // clamp()に対応してないブラウザ用
+  #{$property}: clamp(#{$spMin}, calc(#{$a}vw + #{$b}), #{$spMax});
 }

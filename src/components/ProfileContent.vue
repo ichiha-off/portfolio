@@ -1,42 +1,48 @@
 <template>
   <section class="profile" id="profile">
-    <h1 class="profile__headline">
-      <span class="profile__headline--front">My Profile</span>
-      <span class="profile__headline--back">My Profile</span>
-    </h1>
-
     <div class="profile__inner">
-      <div class="profile__inner--left">
-        <div class="profile__name">
-          金山 裕紀 / <span class="profile__name--en">Yuki Kanayama</span>
+      <h1 class="profile__headline">
+        <span class="profile__headline--front">PROFILE</span>
+        <span class="profile__headline--back">PROFILE</span>
+      </h1>
+      
+      <div class="profile__contents">
+        <div class="profile__contents--left">
+          <div class="profile__name">
+            <span>
+              金山 裕紀
+            </span>
+            / 
+            <span class="profile__name--en">Yuki Kanayama</span>
+          </div>
+          <div class="profile__sns-icons">
+            <a class="profile__sns-link" href="https://twitter.com/mtkana_off">
+              <img src="@/assets/twitter.svg" alt="Twitterのアイコン" class="profile__sns-icon-img">
+            </a>
+            <a class="profile__sns-link" href="https://zenn.dev/yuki_kanayama">
+              <img src="@/assets/Zenn.svg" alt="Zennのアイコン" class="profile__sns-icon-img">
+            </a>
+            <a class="profile__sns-link" href="https://github.com/ichiha-off">
+              <img src="@/assets/github.svg" alt="Githubのアイコン" class="profile__sns-icon-img">
+            </a>
+            <a class="profile__sns-link" href="https://note.com/_ichiha_memo">
+              <img src="@/assets/note.svg" alt="noteのアイコン" class="profile__sns-icon-img">
+            </a>
+          </div>
         </div>
-        <div class="profile__sns-icons">
-          <a class="profile__sns-link" href="https://twitter.com/mtkana_off">
-            <img src="@/assets/twitter.svg" alt="Twitterのアイコン" class="profile__sns-icon-img">
-          </a>
-          <a class="profile__sns-link" href="https://zenn.dev/yuki_kanayama">
-            <img src="@/assets/Zenn.svg" alt="Zennのアイコン" class="profile__sns-icon-img">
-          </a>
-          <a class="profile__sns-link" href="https://github.com/ichiha-off">
-            <img src="@/assets/github.svg" alt="Githubのアイコン" class="profile__sns-icon-img">
-          </a>
-          <a class="profile__sns-link" href="https://note.com/_ichiha_memo">
-            <img src="@/assets/note.svg" alt="noteのアイコン" class="profile__sns-icon-img">
-          </a>
-        </div>
-      </div>
 
-      <div class="profile__inner--right">
-        <div class="profile__text">
-          和歌山生まれの和歌山育ち。
-          <br>コロナ禍に退職し、自宅でフロントエンドエンジニアを目指し勉強中。
-          <br>妻子持ち。
-          <br>よければSNS達を覗いてください。
-          <div class="profile__text--en">
-            Born and raised in Wakayama.
-            <br>Retired from Corona disaster and now studying to be a front-end engineer at home.
-            <br>wife and children.
-            <br>Please take a look at our social networking sites if you like.
+        <div class="profile__contents--right">
+          <div class="profile__text">
+            和歌山生まれの和歌山育ち。
+            コロナ禍に退職し、自宅でフロントエンドエンジニアを目指し勉強中。
+            妻子持ち。
+            よければSNS達を覗いてください。
+            <div class="profile__text--en">
+              Born and raised in Wakayama.
+              Retired from Corona disaster and now studying to be a front-end engineer at home.
+              wife and children.
+              Please take a look at our social networking sites if you like.
+            </div>
           </div>
         </div>
       </div>
@@ -53,30 +59,37 @@ export default {
 
 <style lang="scss" scoped>
   .profile {
-    margin-top: 10rem;
-    padding: 0 1.5rem;
-    // @include content-visibility(1000px);
+    @include responsiveSize('margin-top', 320px, 1280px, 120px, 240px);
+    overflow: hidden;
+    @include responsiveSize('padding-left', 375px, 1280px, 20px, 40px);
+    @include responsiveSize('padding-right', 375px, 1280px, 20px, 40px);
     &__headline {
       position: relative;
-      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
       letter-spacing: -0.04em;
       &--front {
         @include headline-front;
       }
       &--back {
         @include headline-back;
+        top: 200%;
       }
     }
-    &__inner {
-      margin-top: 4rem;
+
+    &__contents {
+      max-width: 1400px;
+      margin-top: 1.5rem;
+      &--left {
+        flex-shrink: 0;
+      }
     }
+
     &__name {
-      &--en {
-        font-family: 'Roboto', sans-serif;
-        letter-spacing: 0.08em;
-      }
+      @include responsiveSize('font-size', 320px, 1920px, 16px, 32px);
     }
+
     &__sns-icons {
+      position: relative;
       margin-top: 1rem;
       margin-bottom: 2rem;
     }
@@ -92,10 +105,10 @@ export default {
       height: auto;
     }
     &__text {
+      position: relative;
       line-height: 1.6;
       &--en {
         margin-top: 1rem;
-        font-family: 'Roboto', sans-serif;
       }
     }
   }
@@ -103,28 +116,26 @@ export default {
   // レスポンシブ
   .profile {
     @include responsive(md) {
-      padding: 0 5rem;
-    }
-    @include responsive(lg) {
+      padding-right: 0;
       &__inner {
-        display: flex;
-        &--left {
-          width: 40%;
-        }
-        &--right {
-          width: 60%;
-        }
-      }
-      &__name {
-        font-size: 24px;
-      }
-      &__sns-icons {
-        margin-top: 2rem;
+        @include responsiveSize('width', 0px, 1920px, 0px, 1660px);
+        margin-left: auto;
       }
     }
+
+    @include responsive(lg) {
+      &__text {
+        padding-right: 84px;
+      }
+    }
+
     @include responsive(xl) {
-      max-width: 1200px;
-      margin: 10rem auto 0;
+      &__contents {
+        display: flex;
+        &--right {
+          @include responsiveSize('margin-left', 1280px, 1920px, 40px, 120px);
+        }
+      }
     }
   }
 </style>

@@ -1,7 +1,10 @@
 <template>
+<div>
   <TopContent/>
   <ProductsContent/>
   <ProfileContent/>
+  <TheContact/>
+</div>
 </template>
 
 <script>
@@ -12,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger)
 import TopContent from "@/components/TopContent.vue";
 import ProductsContent from '@/components/ProductsContent.vue';
 import ProfileContent from '@/components/ProfileContent.vue';
+import TheContact from '@/components/TheContact.vue';
 
 export default {
   name: 'TopView',
@@ -19,6 +23,7 @@ export default {
     TopContent,
     ProductsContent,
     ProfileContent,
+    TheContact
   },
   methods: {
     scrollProductsHeadline() {
@@ -49,6 +54,23 @@ export default {
         duration: 0.4,
         scrollTrigger: {
           trigger: '.profile__headline',
+          start: "top 60%", // ウィンドウのどの位置を発火の基準点にするか
+          end: "bottom 25%", // ウィンドウのどの位置をイベントの終了点にするか
+          toggleActions: "play none none none", // スクロールイベントで発火するアニメーションの種類
+        },
+      })
+    },
+    scrollContactHeadline() {
+      gsap.fromTo(".contact__headline", {
+        autoAlpha: 0,
+        x: 300,
+      }, {
+        autoAlpha: 1,
+        x: 0,
+        ease: "power2.out",
+        duration: 0.4,
+        scrollTrigger: {
+          trigger: '.contact__headline',
           start: "top 60%", // ウィンドウのどの位置を発火の基準点にするか
           end: "bottom 25%", // ウィンドウのどの位置をイベントの終了点にするか
           toggleActions: "play none none none", // スクロールイベントで発火するアニメーションの種類
@@ -98,11 +120,7 @@ export default {
       }
     },
     headerVisible() {
-      const menu = document.querySelector('.header__mobile-menu');
       const nav = document.querySelector('.header__nav');
-      menu.setAttribute(
-        "style", "opacity: 1; visibility: visible;"
-      );
       nav.setAttribute(
         "style", "opacity: 1; visibility: visible;"
       );
@@ -112,6 +130,7 @@ export default {
     this.$nextTick(function() {
       this.scrollProductsHeadline();
       this.scrollProfileHeadline();
+      this.scrollContactHeadline();
       this.scrollProductsItem();
     })
     this.headerVisible();

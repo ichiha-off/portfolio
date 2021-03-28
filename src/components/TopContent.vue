@@ -1,19 +1,35 @@
 <template>
   <div class="top">
-    <picture>
-      <source media="(min-width: 768px)" srcset="@/assets/image-pc.png">
-      <img src="@/assets/image-phone.png" alt="トップイメージ画像です。" class="top__image">
-    </picture>
-    <div class="top__catch-copy">
-      <span class="top__catch-copy--gradient">Become</span>
-      <span class="top__catch-copy--gradient">front-end</span>
-      <span class="top__catch-copy--gradient">developer!</span>
-    </div>
-    <div class="top__scroll">
-      scroll
-      <span class="top__scroll--bar">
-        <span class="top__scroll--inner-bar"></span>
-      </span>
+    <div class="top__inner">
+      <div class="top__catch-copy">
+        <span class="top__catch-copy--gradient">BECOME</span>
+        <span class="top__catch-copy--gradient">FRONT-END</span>
+        <span class="top__catch-copy--gradient">DEVELOPER!</span>
+      </div>
+      <div class="top__text">
+        <div class="top__text--left">
+          <div class="top__text--agree">
+            WELLCOME!
+            <br>I AM YUKI KANAYAMA
+          </div>
+        </div>
+        <div class="top__text--right">
+          <div class="top__text--content">
+            <p class="top__text--content-en">
+              Nice to meet you. I'm glad you're here. Thank you very much. I hope you enjoy my work.
+              </p>
+            <p class="top__text--content-jp">
+              はじめまして。良くここに来てくれました。ありがとうございます。頑張って制作したので楽しんでいったください。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="top__scroll">
+        scroll
+        <span class="top__scroll--bar">
+          <span class="top__scroll--inner-bar"></span>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -40,39 +56,59 @@ export default {
 
   .top {
     position: relative;
-    height: max(calc(812px - 80px), calc(100vh - 80px));
-    &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+    @include responsiveSize('padding-left', 375px, 1280px, 20px, 40px);
+    @include responsiveSize('padding-right', 375px, 1280px, 20px, 40px);
+    &__inner {
       width: 100%;
-      height: auto;
-      animation: fuwafuwa 3s ease-in-out infinite;
     }
+
     &__catch-copy {
-      position: absolute;
-      left: 24px;
-      bottom: 80px;
-      display: flex;
-      flex-direction: column;
       &--gradient {
-        font-family: 'Oswald', sans-serif;
-        font-size: clamp(64px, 22vw, 80px);
-        letter-spacing: -0.04em;
-        line-height: 1.2em;
         display: inline-block;
+        @include responsiveSize('font-size', 0px, 1920px, 16px, 240px);
+        font-weight: 700;
+        line-height: 90%;
+        letter-spacing: -0.04em;
         background: $GradationColor;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       } 
     }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      @include responsiveSize('margin-top', 1280px, 320px, 32px, 64px);
+
+      &--agree {
+        @include responsiveSize('font-size', 375px, 1920px, 24px, 40px);
+        width: max-content;
+      }
+
+      &--content {
+        opacity: 0.4;
+        margin-top: 1rem;
+        @include responsiveSize('font-size', 375px, 1920px, 12px, 16px);
+        &-jp {
+          margin-top: 8px;
+        }
+      }
+    }
+
     &__scroll {
-      font-family: 'Roboto', sans-serif;
       font-size: 12px;
       letter-spacing: 0.08em;
       color: #fff;
       transform: rotate(90deg);
       transform-origin: center right;
+      letter-spacing: 0.08rem;
       position: absolute;
-      right: 24px;
-      bottom: 10%;
+      right: 50%;
+      bottom: -5%;
       &--bar {
         width: 120px;
         height: 1px;
@@ -130,24 +166,39 @@ export default {
   // レスポンシブ
   .top {
     @include responsive(md) {
+      &__inner {
+        @include responsiveSize('width', 0px, 1920px, 0px, 1400px);
+      }
+
+      &__text {
+        flex-direction: row;
+        align-items: center;
+        &--agree {
+          @include responsiveSize('margin-right', 1080px, 1920px, 80px, 160px);
+        }
+
+        &--content {
+          margin-top: 0;
+        }
+      }
+
       &__catch-copy {
         left: clamp(40px, 5vw ,110px);
-        &--gradient {
-          font-size: clamp(80px, 20vw, 128px);
-        } 
       }
+
       &__scroll {
-        right: 40px;
-        bottom: -10px;
+        right: 32px;
+        bottom: -5%;
         &--bar {
-          width: 120px;
+          width: 160px;
         }
         &--inner-bar {
-          right: -240px;
-          width: 240px;
+          right: -320px;
+          width: 320px;
           animation: scroll-bar 2.4s ease-in-out infinite;
         }
       }
+
       @keyframes scroll-bar {
         0% {
           transform: translate3d(-480px,0,0);
@@ -158,33 +209,9 @@ export default {
         }
       }
     }
+
     @include responsive(lg) {
-      height: max(calc(100vh - 120px), calc(812px - 120px));
-      &__catch-copy {
-        bottom: 120px;
-        &--gradient {
-          font-size: clamp(120px, 20vh, 200px);
-        }
-      }
-      &__image {
-        width: clamp(640px, 80vh, 80%);
-        position: absolute;
-        right: 40px;
-      }
-    }
-    @include responsive(xl) {
       height: calc(100vh - 120px);
-      &__catch-copy {
-        bottom: 10%;
-        &--gradient {
-          font-size: clamp(120px, 12vw, 216px);
-        }
-      }
-      &__image {
-        right: clamp(40px, 5vw, 110px);
-        width: clamp(640px, 50vw, 1080px);
-        top: 10%;
-      }
     }
   }
 </style>

@@ -16,17 +16,16 @@ export default {
   .footer {
     width: 100%;
     height: 40px;
-    padding-top: 7.5rem;
+    padding: 3.75rem 0;
     &__copyright {
       text-align: center;
-      font-family: 'Roboto', sans-serif;
     }
   }
 
 // レスポンシブ
   .footer {
     @include responsive(lg) {
-      padding-top: 240px;
+      padding: 7.5rem 0;
     }
   }
 </style>

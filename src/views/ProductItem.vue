@@ -1,60 +1,78 @@
 <template>
-  <div class="product-item">
-    <div class="slide-img-anime">
-      <picture>
-        <source media="(min-width: 768px)" :srcset="'/product-img/product' + productItem[$route.params.id - 1].id + '-pc.png'">
-        <img class="product-item__img" :src="'/product-img/product' + productItem[$route.params.id - 1].id + '.png'" alt="イメージ画像です">
-      </picture>
-    </div>
-
-    <div class="slide-img-anime">
-      <picture>
-        <source media="(min-width: 768px)" :srcset="'/product-img/product' + productItem[$route.params.id - 1].id + '-bottom-pc.png'">
-        <img class="product-item__img--bottom" :src="'/product-img/product' + productItem[$route.params.id - 1].id + '-bottom.png'" alt="イメージ画像です">
-      </picture>
-    </div>
-
-    <div class="product-item__text">
-      <div class="product-item__title">
-        {{ productItem[$route.params.id - 1].title }}
+  <div class="product-item" id="product-item">
+    <div class="product-item__inner">
+      <div class="slide-img-anime">
+        <picture>
+          <source media="(min-width: 768px)" :srcset="'/product-img/product' + productItem[$route.params.id - 1].id + '-pc.png'">
+          <img class="product-item__img" :src="'/product-img/product' + productItem[$route.params.id - 1].id + '.png'" alt="イメージ画像です">
+        </picture>
       </div>
 
-      <div class="product-item__info">
-        <div class="product-item__info--date">
-          <span>作成期間</span>
-          {{ productItem[$route.params.id - 1].date }}
-        </div>
-        <div class="product-item__info--lang">
-          <span>使用技術</span>
-          {{ productItem[$route.params.id - 1].lang }}
-        </div>
-        <div class="product-item__info--url">
-          <span>URL</span>
-          <a :href="productItem[$route.params.id - 1].url">
-            {{ productItem[$route.params.id - 1].url }}
-          </a>
-        </div>
+      <div class="slide-img-anime">
+        <picture>
+          <source media="(min-width: 768px)" :srcset="'/product-img/product' + productItem[$route.params.id - 1].id + '-bottom-pc.png'">
+          <img class="product-item__img--bottom" :src="'/product-img/product' + productItem[$route.params.id - 1].id + '-bottom.png'" alt="イメージ画像です">
+        </picture>
       </div>
 
-      <div class="product-item__comment">
-        <h3 class="product-item__comment--title">
-          作品経緯
-        </h3>
-        <p class="product-item__comment--content">
-          {{ productItem[$route.params.id - 1].content }}
-        </p>
+      <div class="product-item__text">
+        <div class="product-item__title">
+          {{ productItem[$route.params.id - 1].title }}
+        </div>
 
-        <h3 class="product-item__comment--title">デザインについて</h3>
-        <p class="product-item__comment--content" v-for="contentDesign in productItem[$route.params.id - 1].contentDesigns" :key="contentDesign.id">
-          {{ contentDesign }}
-        </p>
-      </div>
+        <dl class="product-item__info">
+          <div class="product-item__info--date">
+            <dt>作成期間</dt>
+            <dd>
+              {{ productItem[$route.params.id - 1].date }}
+            </dd>
+          </div>
+          <div class="product-item__info--lang">
+            <dt>使用技術</dt>
+            <dd>
+              {{ productItem[$route.params.id - 1].lang }}
+            </dd>
+          </div>
+          <div class="product-item__info--url">
+            <dt>URL</dt>
+            <dd>
+              <a :href="productItem[$route.params.id - 1].url">
+                {{ productItem[$route.params.id - 1].url }}
+              </a>
+            </dd>
+          </div>
+        </dl>
 
-      <div class="product-item__back">
-        <a href="/" class="product-item__back-link">
-          <img src="@/assets/back-arrow.svg" alt="戻るボタンのアイコン">
-          <span>back</span>
-        </a>
+        <div class="product-item__comment">
+          <div class="product-item__comment--product">
+            <h3 class="product-item__comment--title">
+              作品経緯
+            </h3>
+
+            <div class="product-item__comment--bottom">
+              <p class="product-item__comment--content">
+                {{ productItem[$route.params.id - 1].content }}
+              </p>
+            </div>
+          </div>
+
+          <div class="product-item__comment--design">
+            <h3 class="product-item__comment--title">デザインについて</h3>
+            
+            <div class="product-item__comment--bottom">
+              <p class="product-item__comment--content" v-for="contentDesign in productItem[$route.params.id - 1].contentDesigns" :key="contentDesign.id">
+                {{ contentDesign }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-item__back">
+          <router-link to="/" class="product-item__back-link">
+            <img src="@/assets/back-arrow.svg" alt="戻るボタンのアイコン">
+            <span>back</span>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -104,20 +122,23 @@ export default {
             "デザインの4原則を意識して、基本を整えようという目的でデザインをしました。"
           ]
         },
+        {
+          id: 4,
+          title: "Yu-k1 blog",
+          date: "約1週間",
+          lang: "Nuxt.js / Netlify / microCMS / Figma ",
+          url: "https://yu-k1blog.netlify.app/",
+          content: "Web制作におけるフロントエンド部分のトレンドを調べているとJamstackでの制作が流行っていると発見し、自分が学んでいるNuxt.jsのSSGを用いて行えるとのことでチャレンジ。日本製のmicroCMSが日本語のドキュメントが豊富はわかりやすく実行することができた。Jamstackをする上で静的サイトである必要があるため、自分が投稿サイトで投稿してきたものをまとめる。今度は自身のアウトプットサイトとしても運用することを想定し、ブログを制作すると決めました。",
+          contentDesigns: [
+            "あくまで、情報を発信するブログのサイトなので、『文字を読む』のをメインで想定し、デザインしました。あまり凝った色、インタラクションを使わずに文字をスムーズに読めるように余白を多めにしました。SSGのおかげで既にある静的ページを読み込むだけなのでさくさく記事ページに移動できるので、間のロードアニメーションは最初は入れていましたが、利点を壊してしまっていたので削除しました。"
+          ]
+        },
       ]
     }
   },
   methods: {
     headerHidden() {
-      const openClasses = document.querySelectorAll('.menu-open');
-      const menu = document.querySelector('.header__mobile-menu');
       const nav = document.querySelector('.header__nav');
-      for (const val of openClasses) {
-        val.classList.remove('menu-open');
-      }
-      menu.setAttribute(
-        "style", "opacity: 0; visibility: hidden;"
-      );
       nav.setAttribute(
         "style", "opacity: 0; visibility: hidden;"
       );
@@ -131,9 +152,12 @@ export default {
 
 <style lang="scss" scoped>
 .product-item {
-  padding-top: 2.5rem;
-  width: min(100%, 1080px);
-  margin: 0 auto;
+  position: relative;
+  margin-top: 2.5rem;
+  &__inner {
+    width: min(100%, 1080px);
+    margin: 0 auto;
+  }
   &__img {
     width: min(100%, 1080px);
     height: 100%;
@@ -147,7 +171,7 @@ export default {
     padding: 0 24px;
   }
   &__title {
-    font-size: 24px;
+    font-size: 3rem;
     font-weight: bold;
     margin: 40px 0;
   }
@@ -156,24 +180,36 @@ export default {
     &--date,
     &--lang,
     &--url {
-      & > span {
-        width: 20%;
-        display: inline-block;
-      } 
+      display: flex;
+      & dt {
+        width: 100px;
+      }
     }
+
     &--lang,
     &--url {
       margin-top: 1rem;
     }
   }
   &__comment {
+    margin-top: 5rem;
     &--title {
-      margin-top: 2.5rem;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
       font-weight: bold;
     }
+
+    &--design {
+      margin-top: 2.5rem;
+    }
+
+    &--bottom {
+      margin-top: 1rem;
+    }
+
     &--content {
-      line-height: 1.6;
-      margin-top: 0.5rem;
+      line-height: 2.4;
+      letter-spacing: 0.08em;
       font-size: 12px;
     }
   }
@@ -187,6 +223,43 @@ export default {
     }
     & > span {
       margin-left: 1rem;
+    }
+  }
+
+  &__nav {
+    position: fixed;
+    top: 40px;
+    right: 60px;
+    z-index: 1000;
+    transform: rotate(-90deg);
+    transform-origin: bottom right;
+    z-index: 100;
+    &--list {
+      display: flex;
+      @include responsiveSize('font-size', 320px, 1920px, 16px, 24px);
+    }
+    &--item {
+      &:nth-child(n + 2) {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+    @include responsiveSize(
+      "font-size",
+      320px,
+      768px,
+      12px,
+      16px
+    );
+    padding: 0 8px;
+    box-shadow: inset 0 0 0 0 $TextColorW;
+    transition: all 0.4s ease-in-out 0s;
+    &:hover{
+      box-shadow: inset 300px 0 0 0 $TextColorW;
+      color: $BackColorB;
     }
   }
 }

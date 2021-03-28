@@ -289,10 +289,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .en {
-    font-family: 'Oswald', sans-serif;
-  }
-
   .loaded {
     transform: translateY(-100vh);
     visibility: hidden;

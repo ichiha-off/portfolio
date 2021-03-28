@@ -12,7 +12,9 @@
     "gsap": "^3.6.0",
     "preload-webpack-plugin": "^2.3.0",
     "reset.css": "^2.0.2",
+    "swiper": "^6.5.0",
     "vue": "^3.0.0",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {

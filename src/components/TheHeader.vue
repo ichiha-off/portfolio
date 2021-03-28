@@ -4,44 +4,28 @@
       <a class="header__link" href="/">
         <img class="header__logo" src="@/assets/logo.svg" alt="Yuki Kanayama's LOGO">
         <div class="header__logo-text">
-          Yuki Kanayama's Portfolio
+          YUKI KANAYAMA's Portfolio
         </div>
       </a>
       <nav class="header__nav">
         <ul class="header__nav--list">
           <li class="header__nav--item">
-            <a href="/#products" class="header__nav--link">
-              My Products
+            <a @click="toScroll('contact')" class="header__nav--link">
+              CONTACT
             </a>
           </li>
           <li class="header__nav--item">
-            <a href="/#profile" class="header__nav--link">
-              My Profile
+            <a @click="toScroll('profile')" class="header__nav--link">
+              PROFILE
+            </a>
+          </li>
+          <li class="header__nav--item">
+            <a @click="toScroll('products')" class="header__nav--link">
+              PRODUCTS
             </a>
           </li>
         </ul>
       </nav>
-      <button class="header__mobile-menu" @click="openMenu" aria-label="メニューの開閉ボタン">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="mobile-menu__area">
-        <nav class="mobile-menu__nav">
-          <ul class="mobile-menu__list">
-            <li class="mobile-menu__item">
-              <a href="#products" class="mobile-menu__link" @click="openMenu">
-                My Products
-              </a>
-            </li>
-            <li class="mobile-menu__item">
-              <a href="#profile" class="mobile-menu__link" @click="openMenu">
-                My Profile
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
     </div>
   </header>
 </template>
@@ -50,38 +34,27 @@
 export default {
   name: 'TheHeader',
   methods: {
-    openMenu() {
-      const main = document.querySelector('.main');
-      const menu = document.querySelector('.mobile-menu__area');
-      const btn = document.querySelector('.header__mobile-menu');
-      btn.classList.toggle('menu-open');
-      if (main.classList.contains('menu-open')) {
-        setTimeout(() => {
-          main.classList.toggle('menu-open');
-        }, 250);
-        menu.classList.toggle('menu-open');
-      } else {
-        setTimeout(() => {
-          menu.classList.toggle('menu-open');
-        }, 250);
-        main.classList.toggle('menu-open');
-      }
-    },
+    toScroll(el) {
+      const id = document.getElementById(el);
+      id.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
   .header {
-    background-color: $BackColorB;
+    position: fixed;
+    z-index: 100;
+    background: linear-gradient(180deg ,#1c1c1c,rgba(22,22,22,0));
     width: 100%;
     height: 80px;
-    position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
     &__inner {
-      padding: 0 1.5rem;
+      position: relative;
+      @include responsiveSize('padding-left', 375px, 1280px, 20px, 40px);
+      @include responsiveSize('padding-right', 375px, 1280px, 20px, 40px);
       height: 100%;
       display: flex;
       justify-content: space-between;
@@ -91,60 +64,41 @@ export default {
       display: flex;
       align-items: center;
     }
-    &__logo-logo {
-      height: auto;
-      width: auto;
+    &__logo {
+      @include responsiveSize('height', 320px, 1280px, 40px, 60px);
+      @include responsiveSize('width', 320px, 1280px, 40px, 60px);
     }
     &__logo-text {
       display: none;
       margin-left: 1rem;
       font-size: clamp(24px, 2vw, 32px);
-      font-weight: bold;
-      font-family: 'Roboto', sans-serif;
       }
     &__nav {
-      display: none; 
       &--list {
         display: flex;
+        @include responsiveSize('font-size', 320px, 1920px, 16px, 24px);
       }
       &--item {
-        font-family: 'Roboto', sans-serif;
-        &:first-child {
-          margin-right: 2rem;
+        &:nth-child(n + 2) {
+          margin-left: 1rem;
         }
       }
-    }
-    &__mobile-menu {
-      background-color: unset;
-      cursor: pointer;
-      transition: opacity 0.3s, visibility 0.3s;
-      > span {
-        background-color: #fff;
-        display: block;
-        width: 16px;
-        height: 1px;
-        margin-top: 4px;
-        margin-left: auto;
-        transition: transform 0.4s;
-        &:first-child {
-          width: 24px;
-          margin-top: 0px;
-        }
-      }
-      &.menu-open {
-        > span {
-        &:nth-child(1) {
-          transition-delay: 0;
-          transform: translateX(-24px) scaleX(0);
-        }
-        &:nth-child(2) {
-          transition-delay: 70ms;
-          transform: translateY(5px) rotate(135deg);
-        }
-        &:nth-child(3) {
-          transition-delay: 140ms;
-          transform: rotate(-135deg);
-        }
+
+      &--link {
+        cursor: pointer;
+        @include responsiveSize(
+          "font-size",
+          320px,
+          768px,
+          12px,
+          16px
+        );
+        padding: 0 8px;
+        box-shadow: inset 0 0 0 0 $TextColorW;
+        transition: all 0.4s ease-in-out 0s;
+        &:hover{
+          box-shadow: inset 300px 0 0 0 $TextColorW;
+          color: $BackColorB;
         }
       }
     }
@@ -155,11 +109,9 @@ export default {
     position: absolute;
     top: 79px;
     left: 0;
-    background-color: $BackColorB;
+    background-color: $TextColorW;
     height: 0;
     width: 100vw;
-    visibility: hidden;
-    opacity: 0;
     transition: opacity 0.4s ease-out,
                 height 0.4s ease-out,
                 visibility 0.4s ease-out;
@@ -193,22 +145,29 @@ export default {
 // レスポンシブ
   .header {
     @include responsive(lg) {
+      position: inherit;
       height: 120px;
-      &__inner {
-        padding: 0 2.5rem;
-      }
-      &__logo {
-        width: 80px;
-        height: 80px;
-      }
       &__logo-text {
         display: block;
       }
+
       &__nav {
-        display: block;
-      }
-      &__mobile-menu {
-        display: none;
+        position: fixed;
+        top: 40px;
+        right: 60px;
+        z-index: 1000;
+        transform: rotate(-90deg);
+        transform-origin: bottom right;
+        z-index: 100;
+        &--list {
+          display: flex;
+          @include responsiveSize('font-size', 320px, 1920px, 16px, 24px);
+        }
+        &--item {
+          &:nth-child(n + 2) {
+            margin-left: 1.5rem;
+          }
+        }
       }
     }
   }

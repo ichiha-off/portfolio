@@ -1,12 +1,18 @@
 <template>
+<div class="container">
   <TheLoading/>
   <TheHeader/>
   <main class="main">
-    <div id="router-view" v-bind:class="this.class">
-      <router-view/>
+    <div id="router-view">
+      <router-view v-slot="{ Component }">
+        <transition name="slide-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </main>
   <TheFooter/>
+</div>
 </template>
 
 <script>
@@ -25,17 +31,6 @@ export default {
     TheLoading,
     TheHeader,
     TheFooter,
-  },
-  data() {
-    return {
-      changePage: true,
-      class: '_opne'
-    }
-  },
-  watch: {
-    'changePage': function () {
-      this.changePage ? this.changeStart() : this.changeEnd();
-    }
   },
   methods: {
     loadingHide: async function() {
@@ -56,40 +51,42 @@ export default {
       })
     },
 
-    changeStart() {
-      this.class = '_open';
-    },
-    changeEnd() {
-      this.class = '_close';
-    }
   },
   mounted() {
     this.topTextSlide();
-    this.$router.beforeEach((to, from, next) => {
-      this.changePage = false;
-      setTimeout(() => {
-        next();
-      }, 400);
-    });
-    this.$router.afterEach(() => {
-      setTimeout(() => {
-        this.changePage = true;
-      }, 400);
-    });
   },
 }
 </script>
 
 <style lang="scss">
 
+* {
+  box-sizing: border-box;
+}
+
 html {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-padding-top: 120px;
+  @include responsive(lg) {
+    scroll-padding-top: 40px;
+  }
 }
 
 body {
   background-color: $BackColorB;
-  font-family: 'Noto-sans JP', sans-serif;
+  font-family: 'Roboto Condensed', 'Sawarabi Gothic', sans-serif;
   color: $TextColorW;
+  &.__open {
+    overflow: hidden;
+    & .container {
+      overflow: hidden;
+    }
+  }
+}
+
+::selection {
+  background-color: $TextColorW;
+  color: $BackColorB;
 }
 
 a {
@@ -100,23 +97,35 @@ a {
 button {
   border: none;
   outline: none;
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
 
 .main {
-  padding-top: 80px;
   overflow: hidden;
   transition: transform 0.4s ease-out;
-  &.menu-open {
-    transform: translateY(48px);
+  padding-top: 80px;
+  @include responsive(lg) {
+    padding-top: 0px;
   }
 }
 
-._open {
-  animation: page-change-start 0.4s ease-out both;
+.slide-fade-enter-active {
+  transition: all 0.6s cubic-bezier(1, 0.8, 0.4, 1);
 }
 
-._close {
-  animation: page-change-end 0.4s ease-in both;
+.slide-fade-leave-active {
+  transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(50%);
+  opacity: 0;
 }
 
 @keyframes page-change-start {
@@ -136,12 +145,6 @@ button {
   100% {
     opacity: 0;
     transform: translateY(100px);
-  }
-}
-
-@include responsive(lg) {
-  .main {
-    padding-top: 120px;
   }
 }
 
