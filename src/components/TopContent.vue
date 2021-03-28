@@ -69,7 +69,7 @@ export default {
     &__catch-copy {
       &--gradient {
         display: inline-block;
-        @include responsiveSize('font-size', 0px, 1920px, 16px, 240px);
+        @include responsiveSize('font-size', 1px, 1920px, 16px, 240px);
         font-weight: 700;
         line-height: 90%;
         letter-spacing: -0.04em;
@@ -167,7 +167,7 @@ export default {
   .top {
     @include responsive(md) {
       &__inner {
-        @include responsiveSize('width', 0px, 1920px, 0px, 1400px);
+        @include responsiveSize('width', 1px, 1920px, 1px, 1400px);
       }
 
       &__text {

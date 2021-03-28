@@ -118,7 +118,7 @@ export default {
     @include responsive(md) {
       padding-right: 0;
       &__inner {
-        @include responsiveSize('width', 0px, 1920px, 0px, 1660px);
+        @include responsiveSize('width', 1px, 1920px, 1px, 1660px);
         margin-left: auto;
       }
     }
