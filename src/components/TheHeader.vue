@@ -76,11 +76,12 @@ export default {
     &__nav {
       &--list {
         display: flex;
+        flex-direction: row-reverse;
         @include responsiveSize('font-size', 320px, 1920px, 16px, 24px);
       }
       &--item {
-        &:nth-child(n + 2) {
-          margin-left: 1rem;
+        &:not(:last-child) {
+          margin-left: 0.5rem;
         }
       }
 
@@ -161,6 +162,7 @@ export default {
         z-index: 100;
         &--list {
           display: flex;
+          flex-direction: row;
           @include responsiveSize('font-size', 320px, 1920px, 16px, 24px);
         }
         &--item {

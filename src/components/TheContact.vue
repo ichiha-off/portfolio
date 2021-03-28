@@ -28,9 +28,9 @@
     <button class="contact__button">
       <div class="contact__button--inner">
         <a class="contact__button--link" href="https://forms.gle/hMygmavQxkEHZCv37">
-          <h1>
+          <div class="contact__button--text">
             "GO TO THE CONTACT FORM."
-          </h1>
+          </div>
         </a>
       </div>
     </button>
@@ -82,7 +82,9 @@ export default {
     }
 
     &__button {
+      position: relative;
       width: 100%;
+      z-index: 1;
       @include responsiveSize('margin-top', 320px, 1280px, 80px, 160px);
       display: block;
       &--inner {
@@ -103,10 +105,11 @@ export default {
         border: 4px solid #453a94;
         border-image: $GradationColor;
         border-image-slice: 1;
-        & > h1 {
-          color: $TextColorW;
-          padding: 1rem 0.5rem;
-        }
+      }
+
+      &--text {
+        color: $TextColorW;
+        padding: 1rem 0.5rem;
       }
     }
   }

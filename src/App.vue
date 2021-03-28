@@ -105,6 +105,19 @@ button {
   cursor: pointer;
 }
 
+#products,
+#profile,
+#contact {
+  &::before {
+    display: block;
+    content: ' '; 
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 .main {
   overflow: hidden;
   transition: transform 0.4s ease-out;

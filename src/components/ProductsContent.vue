@@ -8,10 +8,12 @@
       <div class="products__slider">
         <swiper
           :thumbs="{ swiper: thumbsSwiper }"
-          effect="fade"
           :slides-per-view="1"
           :speed=600
           :loop='true'
+          :navigation="{
+          nextEl: '.products__slider--next',
+          prevEl: '.products__slider--prev' }"
           :pagination="{
             type: 'custom',
             el: '.products__slider--pagination',
@@ -19,9 +21,6 @@
               return '0' + current;
             }
           }"
-          :navigation="{
-          nextEl: '.products__slider--next',
-          prevEl: '.products__slider--prev' }"
         >
           <swiper-slide>
             <router-link to="/product/1">
@@ -55,6 +54,7 @@
                   @swiper="setThumbsSwiper"
                   :speed=600
                   :loop='true'
+                  :allowTouchMove='false'
                   watch-slides-visibility
                   watch-slides-progress>
                   <swiper-slide>
@@ -77,11 +77,11 @@
               </div>
             </div>
             <div class="products__slider--navigation">
-              <div class="products__slider--prev">
-                <img src="@/assets/arrow-left.svg" alt="スライダーの前のページへ移行するボタン">
+              <div>
+                <img class="products__slider--prev" src="@/assets/arrow-left.svg" alt="スライダーの前のページへ移行するボタン">
               </div>
-              <div class="products__slider--next">
-                <img src="@/assets/arrow-right.svg" alt="スライダーの次のページへ移行するボタン">
+              <div>
+                <img class="products__slider--next" src="@/assets/arrow-right.svg" alt="スライダーの次のページへ移行するボタン">
               </div>
             </div>
           </div>
@@ -279,10 +279,8 @@ export default {
 
     &--prev, &--next {
       cursor: pointer;
-      & > img {
-        @include responsiveSize('width', 1080px, 1920px, 60px, 120px);
-        @include responsiveSize('height', 1080px, 1920px, 60px, 120px);
-      }
+      @include responsiveSize('width', 1080px, 1920px, 60px, 120px);
+      @include responsiveSize('height', 1080px, 1920px, 60px, 120px);
     }
 
     &--prev {
@@ -320,7 +318,6 @@ export default {
           margin-left: inherit;
           & > .swiper-container {
             margin-right: auto;
-            margin-left: auto;
           }
         }
 
@@ -337,6 +334,9 @@ export default {
           & h3,
           p {
             padding-right: 82px;
+          }
+          & > .swiper-container {
+            margin-left: auto;
           }
         }
       }

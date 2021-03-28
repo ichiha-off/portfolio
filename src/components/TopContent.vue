@@ -110,7 +110,7 @@ export default {
       right: 50%;
       bottom: -5%;
       &--bar {
-        width: 120px;
+        width: 20vh;
         height: 1px;
         display: block;
         position: relative;
@@ -119,8 +119,9 @@ export default {
       &--inner-bar {
         position: absolute;
         top: 0;
-        right: -160px;
-        width: 160px;
+        right: min(-20vh, -200px);
+        width: 20vh;
+        max-width: 200px;
         height: 1px;
         animation: scroll-bar 2.4s ease-in-out infinite;
         background-color: #fff;
@@ -140,7 +141,7 @@ export default {
 
   @keyframes scroll-bar {
     0% {
-      transform: translate3d(-320px,0,0);
+      transform: translate3d(-600px,0,0);
     }
 
     100% {
@@ -189,19 +190,14 @@ export default {
       &__scroll {
         right: 32px;
         bottom: -5%;
-        &--bar {
-          width: 160px;
-        }
         &--inner-bar {
-          right: -320px;
-          width: 320px;
-          animation: scroll-bar 2.4s ease-in-out infinite;
+          animation: scroll-bar 3.2s ease-in-out infinite;
         }
       }
 
       @keyframes scroll-bar {
         0% {
-          transform: translate3d(-480px,0,0);
+          transform: translate3d(-800px,0,0);
         }
 
         100% {

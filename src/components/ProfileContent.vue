@@ -77,7 +77,6 @@ export default {
     }
 
     &__contents {
-      max-width: 1400px;
       margin-top: 1.5rem;
       &--left {
         flex-shrink: 0;
@@ -86,6 +85,7 @@ export default {
 
     &__name {
       @include responsiveSize('font-size', 320px, 1920px, 16px, 32px);
+      position: relative;
     }
 
     &__sns-icons {
