@@ -153,7 +153,6 @@ export default {
       }
 
       &__nav {
-        position: fixed;
         top: 40px;
         right: 60px;
         z-index: 1000;

@@ -22,22 +22,22 @@
             }
           }"
         >
-          <swiper-slide>
+          <swiper-slide class="products__slide">
             <router-link to="/product/1">
               <img class="products__img" src="@/assets/product-img01.png" alt="作品のイメージ画像">
             </router-link>
           </swiper-slide>
-          <swiper-slide>
+          <swiper-slide class="products__slide">
             <router-link to="/product/2">
               <img class="products__img" src="@/assets/product-img02.png" alt="作品のイメージ画像">
             </router-link>
           </swiper-slide>
-          <swiper-slide>
+          <swiper-slide class="products__slide">
             <router-link to="/product/3">
               <img class="products__img" src="@/assets/product-img03.png" alt="作品のイメージ画像">
             </router-link>
           </swiper-slide>
-          <swiper-slide>
+          <swiper-slide class="products__slide">
             <router-link to="/product/4">
               <img class="products__img" src="@/assets/product-img04.png" alt="作品のイメージ画像">
             </router-link>
@@ -204,7 +204,7 @@ export default {
     }
 
     &__img {
-      @include responsiveSize('width', 320px, 1920px, 280px, 1000px);
+      width: 100%;
       height: auto;
     }
 
@@ -240,12 +240,15 @@ export default {
     }
 
     &--navigation {
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: center;
       @include responsiveSize('margin-top', 1080px, 1920px, 40px, 80px);
     }
 
     &--pagination {
+      width: max-content;
       position: relative;
       @include responsiveSize('font-size', 1080px, 1920px, 64px, 160px);
       font-weight: 700;
@@ -279,12 +282,12 @@ export default {
 
     &--prev, &--next {
       cursor: pointer;
-      @include responsiveSize('width', 1080px, 1920px, 60px, 120px);
-      @include responsiveSize('height', 1080px, 1920px, 60px, 120px);
+      @include responsiveSize('width', 1080px, 1920px, 40px, 80px);
+      @include responsiveSize('height', 1080px, 1920px, 40px, 80px);
     }
 
     &--prev {
-      @include responsiveSize('margin-right', 1080px, 1920px, 40px, 160px);
+      @include responsiveSize('margin-right', 1080px, 1920px, 40px, 80px);
     }
   }
 }
@@ -292,11 +295,11 @@ export default {
 
 // レスポンシブ
   .products {
-    padding-right: 0;
     @include responsive(md) {
+      padding-right: 0;
       &__inner {
-        @include responsiveSize('width', 1px, 1920px, 1px, 1660px);
-        margin-left: auto;
+        @include responsiveSize('width', 1px, 1920px, 1px, 1400px);
+        margin: 0 auto;
       }
 
       &__slider {
@@ -323,23 +326,60 @@ export default {
 
         &--navigation {
           display: flex;
-          justify-content: inherit;
-        }
-      }
-    }
-
-    @include responsive(lg) {
-      &__slider {
-        &--title {
-          & h3,
-          p {
-            padding-right: 82px;
-          }
-          & > .swiper-container {
-            margin-left: auto;
-          }
+          justify-content: flex-end;
         }
       }
     }
   }
+</style>
+
+<style lang="scss">
+.products {
+  &__slide {
+    & a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.6s ease;
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: #000000;
+        opacity: 0.6;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
+        }
+      &::after {
+      content: 'READ MORE';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: max-content;
+      @include responsiveSize("font-size", 320px, 1920px, 24px, 80px);
+      font-weight: 700;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.6s ease;
+      color: #fff;
+      z-index: 2;
+      opacity: 0;
+    }
+  
+      &:hover{
+        transform: scale(1.2);
+        &::before {
+          transform: translateY(0);
+        }
+  
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
 </style>

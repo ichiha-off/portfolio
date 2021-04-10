@@ -15,12 +15,12 @@
         </div>
         <div class="top__text--right">
           <div class="top__text--content">
-            <p class="top__text--content-en">
-              Nice to meet you. I'm glad you're here. Thank you very much. I hope you enjoy my work.
-              </p>
             <p class="top__text--content-jp">
               はじめまして。良くここに来てくれました。ありがとうございます。頑張って制作したので楽しんでいったください。
             </p>
+            <p class="top__text--content-en">
+              Nice to meet you. I'm glad you're here. Thank you very much. I hope you enjoy my work.
+              </p>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default {
         display: inline-block;
         @include responsiveSize('font-size', 1px, 1920px, 16px, 240px);
         font-weight: 700;
-        line-height: 90%;
+        line-height: 80%;
         letter-spacing: -0.04em;
         background: $GradationColor;
         -webkit-background-clip: text;
@@ -87,14 +87,21 @@ export default {
       &--agree {
         @include responsiveSize('font-size', 375px, 1920px, 24px, 40px);
         width: max-content;
+        line-height: 1.2;
       }
 
       &--content {
-        opacity: 0.4;
         margin-top: 1rem;
         @include responsiveSize('font-size', 375px, 1920px, 12px, 16px);
+        line-height: 1.6;
         &-jp {
+          opacity: 0.8;
+        }
+
+        &-en {
           margin-top: 8px;
+          opacity: 0.4;
+          letter-spacing: 0.04em;
         }
       }
     }

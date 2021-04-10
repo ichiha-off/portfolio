@@ -1,5 +1,5 @@
 @mixin headline-front {
-  @include responsiveSize("font-size", 320px, 1920px, 40px, 80px);
+  @include responsiveSize("font-size", 320px, 1280px, 40px, 80px);
   background: $GradationColor;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -17,7 +17,7 @@
   white-space: nowrap;
   @include responsive(md) {
     top: -0.1em;
-    right: 100px;
+    right: -100px;
     left: inherit;
     bottom: 0;
   }

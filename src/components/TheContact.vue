@@ -7,29 +7,24 @@
       </h1>
 
       <div class="contact__text">
-        <div class="contact__text--ja">
-          <h3>ありがとうございます！</h3>
-          <p>
+        <h3>THANK YOU!</h3>
+        <p class="contact__text--ja">
             ここまでご覧頂いたことに感謝します。
             少しでも私に興味を持って頂ければ幸いです。
             <br>なんでもお気軽に、お問い合わせください。
-          </p>
-        </div>
-        <div class="contact__text--en">
-          <h3>THANK YOU!</h3>
-          <p>
+        </p>
+        <p class="contact__text--en">
             I appreciate that you've seen this far.
             I hope that you are interested in me at least a little.
             <br>Please feel free to contact me with any questions you may have.
-          </p>
-        </div>
+        </p>
       </div>
     </div>
     <button class="contact__button">
       <div class="contact__button--inner">
-        <a class="contact__button--link" href="https://forms.gle/hMygmavQxkEHZCv37">
+        <a class="contact__button--link" href="https://docs.google.com/forms/d/e/1FAIpQLSeH7oOWTswotYAxQg6nEnSc5rzjLi8djh50XH2TlZHl34njOA/viewform?usp=sf_link">
           <div class="contact__button--text">
-            "GO TO THE CONTACT FORM."
+            "CONTACT ME."
           </div>
         </a>
       </div>
@@ -58,7 +53,7 @@ export default {
       }
       &--back {
         @include headline-back;
-        top: 850%;
+        top: 500%;
       }
     }
 
@@ -66,18 +61,24 @@ export default {
       position: relative;
       margin-top: 1.5rem;
       & h3 {
-        @include responsiveSize('font-size', 320px, 1280px, 32px, 64px);
+        @include responsiveSize('font-size', 320px, 1280px, 32px, 48px);
         font-weight: 700;
       }
 
       & p {
         @include responsiveSize('font-size', 320px, 1280px, 12px, 16px);
-        @include responsiveSize('margin-top', 320px, 1280px, 8px, 16px);
         line-height: 1.6;
       }
 
+      &--ja {
+        @include responsiveSize('margin-top', 320px, 1280px, 8px, 16px);
+        opacity: 0.8;
+      }
+
       &--en {
-        margin-top: 1.5rem
+        margin-top: 0.5rem;
+        letter-spacing: 0.04em;
+        opacity: 0.4;
       }
     }
 
@@ -87,54 +88,49 @@ export default {
       z-index: 1;
       @include responsiveSize('margin-top', 320px, 1280px, 80px, 160px);
       display: block;
+      @include responsiveSize('margin-left', 1280px, 375px, -40px, -20px);
       &--inner {
         text-align: center;
         width: 0%;
         transition: all 0.6s ease-out;
         background: $GradationColor;
-      }
+}
 
       &--link {
         @include responsiveSize('font-size', 320px, 1920px, 24px, 160px);
         font-weight: 700;
-        @include responsiveSize('width', 320px, 768px, 280px, 728px);
+        width: 100vw;
         height: 100%;
         display: inline-block;
-        background-color: $BackColorB;
-        mix-blend-mode: darken;
-        border: 4px solid #453a94;
-        border-image: $GradationColor;
-        border-image-slice: 1;
+        background-color: #fff;
+        mix-blend-mode: screen;
+        // border: 4px solid #453a94;
+        // border-image: $GradationColor;
+        // border-image-slice: 1;
       }
 
       &--text {
-        color: $TextColorW;
-        padding: 1rem 0.5rem;
+        color: $BackColorB;
+        padding: 3rem 1rem;
       }
     }
   }
 
 .contact__button:hover .contact__button--inner {
-  width: 100%;
+  width: 100vw;
 }
 
   .contact {
     @include responsive(md) {
       padding-right: 0;
       &__inner {
-        @include responsiveSize('width', 1px, 1920px, 1px, 1660px);
-        margin-left: auto;
+        @include responsiveSize('width', 1px, 1920px, 1px, 1400px);
+        margin: 0 auto;
       }
 
       &__button {
-        @include responsiveSize('width', 1px, 1920px, 1px, 1400px);
-        margin: 10rem auto 0;
-
-        &--link {
-          @include responsiveSize('width', 1px, 1920px, 1px, 1400px);
-          border: 8px solid #453a94;
-          border-image: $GradationColor;
-          border-image-slice: 1;
+        &--text {
+          padding: 5rem 1rem;
         }
       }
     }

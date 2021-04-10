@@ -33,16 +33,18 @@
 
         <div class="profile__contents--right">
           <div class="profile__text">
-            和歌山生まれの和歌山育ち。
-            コロナ禍に退職し、自宅でフロントエンドエンジニアを目指し勉強中。
-            妻子持ち。
-            よければSNS達を覗いてください。
-            <div class="profile__text--en">
+            <p class="profile__text--jp">
+              和歌山生まれの和歌山育ち。
+              コロナ禍に退職し、自宅でフロントエンドエンジニアを目指し勉強中。
+              妻子持ち。
+              よければSNS達を覗いてください。
+            </p>
+            <p class="profile__text--en">
               Born and raised in Wakayama.
               Retired from Corona disaster and now studying to be a front-end engineer at home.
               wife and children.
               Please take a look at our social networking sites if you like.
-            </div>
+            </p>
           </div>
         </div>
       </div>
@@ -107,8 +109,14 @@ export default {
     &__text {
       position: relative;
       line-height: 1.6;
+      &--jp {
+        opacity: 0.8;
+      }
+
       &--en {
         margin-top: 1rem;
+        opacity: 0.4;
+        letter-spacing: 0.04em;
       }
     }
   }
@@ -118,14 +126,8 @@ export default {
     @include responsive(md) {
       padding-right: 0;
       &__inner {
-        @include responsiveSize('width', 1px, 1920px, 1px, 1660px);
-        margin-left: auto;
-      }
-    }
-
-    @include responsive(lg) {
-      &__text {
-        padding-right: 84px;
+        @include responsiveSize('width', 1px, 1920px, 1px, 1400px);
+        margin: 0 auto;
       }
     }
 
